@@ -4,7 +4,7 @@ import { addProduct, getAllProducts } from "../models/productModel";
 export const createProduct = (req: Request, res: Response, next: NextFunction) => {
     try {
         const { name, price, description, image_url } = req.body;
-        if (!name || !price || !image_url) {
+        if (!name || !price || !image_url || !description) {
             res.status(400).json({message: "Please provide name, price and image_url"});
             return;
         }

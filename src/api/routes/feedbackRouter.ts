@@ -1,9 +1,11 @@
 import { Router } from 'express';
-import { createFeedback, listFeedbackForProduct } from '../controllers/feedbackController';
+import { createfeedback, listFeedbackForProduct } from '../controllers/feedbackController';
+import { authenticate } from '../middleware/authMiddleware';
 
 const feedbackRouter = Router();
 
-feedbackRouter.post('/', createFeedback);
+feedbackRouter.post('/',authenticate, createfeedback);
 feedbackRouter.get('/:productId', listFeedbackForProduct);
+
 
 export default feedbackRouter;

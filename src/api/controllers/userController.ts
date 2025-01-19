@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
-import { addUser, getAllUsers} from "../models/userModel";
-
+import { addUser, getAllUsers, findUserByEmail} from "../models/userModel";
+import jwt from "jsonwebtoken";
 
 export const createUser = (req: Request, res: Response, next: NextFunction) => {
     try {
@@ -21,3 +21,23 @@ export const listUsers = (req: Request, res: Response, next: NextFunction) => {
     }
 };
 
+const Secret_key = "ravintolaratingapp";
+
+export const loginUser = (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const { email, password } = req.body;
+        const user = findUserByEmail(email);
+        if (!user) {
+            res.status(401).json({ message: "Invalid email or password" });
+            return;
+        }
+        if (user.password !== password) {
+            res.status(401).json({ message: "Invalid email or password" });
+            return;
+        }
+        const token = jwt.sign({ userId: user.id }, Secret_key);
+        res.status(200).json({ message: "Login successful", token, user: { id: user.id, name: user.name, email: user.email } });
+    } catch (error) {
+        next(error);
+    }
+}
