@@ -13,10 +13,11 @@ export type Product = {
     image_url?: string;
 };
 
+
 export type Feedback = {
     id: number;
-    user_id: number;
-    product_id: number;
+    userId: number;
+    productId: number;
     comment: string;
     rating: number;
-};
+  };
