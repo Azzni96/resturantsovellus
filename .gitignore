@@ -1,0 +1,27 @@
+# Node.js riippuvuudet
+node_modules/
+
+# Käännetyt TypeScript-tiedostot
+dist/
+
+# Lokitiedostot
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# IDE-asetukset (esim. VS Code)
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# Tietokantatiedostot
+*.sqlite
+
+# Ympäristömuuttujat
+.env
+
+# Testitulokset
+coverage/
